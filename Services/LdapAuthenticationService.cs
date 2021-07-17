@@ -61,13 +61,16 @@ namespace ldap
                         };
                     }
                 }
+                return null;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            _connection.Disconnect();
-            return null;
+            finally
+            {
+                _connection.Disconnect();
+            }
         }
 
         public List<AppUser> Users()
